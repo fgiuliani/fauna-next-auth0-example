@@ -19,13 +19,13 @@ function BookmarkList({ user }) {
 
       {user && user.nickname === username ? (
         <Link href="/add">
-          <a className="createNew">Add</a>
+          <a>Add</a>
         </Link>
       ) : (
         <></>
       )}
 
-      <div className="table">
+      <div>
         {data ? (
           data.map((d) =>
             !d.data.isPrivate ||
@@ -45,9 +45,7 @@ function BookmarkList({ user }) {
             )
           )
         ) : (
-          <>
-            <DataRow loading />
-          </>
+          <></>
         )}
       </div>
     </Layout>

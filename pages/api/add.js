@@ -1,6 +1,6 @@
 import { query as q } from "faunadb";
-import { serverClient } from "../../../lib/fauna-auth";
-import auth0 from "../../../lib/auth0";
+import { serverClient } from "../../lib/fauna-auth";
+import auth0 from "../../lib/auth0";
 
 export default auth0.requireAuthentication(async function addBookmark(
   req,

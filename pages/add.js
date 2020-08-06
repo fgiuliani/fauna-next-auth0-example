@@ -13,7 +13,7 @@ function Add({ user }) {
     if (errorMessage) setErrorMessage("");
 
     try {
-      const res = await fetch(`/api/${user.nickname}/add`, {
+      const res = await fetch("/api/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -26,7 +26,6 @@ function Add({ user }) {
         throw new Error(await res.text());
       }
     } catch (error) {
-      console.error(error);
       setErrorMessage(error.message);
     }
   });
@@ -44,11 +43,7 @@ function Add({ user }) {
             placeholder="Title"
             ref={register({ required: "Title is required" })}
           />
-          {errors.title && (
-            <span role="alert" className="error">
-              {errors.title.message}
-            </span>
-          )}
+          {errors.title && <span role="alert">{errors.title.message}</span>}
         </div>
 
         <div>
@@ -59,11 +54,7 @@ function Add({ user }) {
             placeholder="test-link"
             ref={register({ required: "Slug is required" })}
           />
-          {errors.slug && (
-            <span role="alert" className="error">
-              {errors.slug.message}
-            </span>
-          )}
+          {errors.slug && <span role="alert">{errors.slug.message}</span>}
         </div>
 
         <div>
@@ -74,20 +65,14 @@ function Add({ user }) {
             placeholder="e.g. https://www.google.com"
             ref={register({ required: "Url is required" })}
           />
-          {errors.url && (
-            <span role="alert" className="error">
-              {errors.url.message}
-            </span>
-          )}
+          {errors.url && <span role="alert">{errors.url.message}</span>}
         </div>
 
         <div>
           <label>Description</label>
           <input type="text" name="description" placeholder="" ref={register} />
           {errors.description && (
-            <span role="alert" className="error">
-              {errors.description.message}
-            </span>
+            <span role="alert">{errors.description.message}</span>
           )}
         </div>
 
@@ -95,24 +80,16 @@ function Add({ user }) {
           <label>Private Bookmark</label>
           <input type="checkbox" name="isPrivate" ref={register} />
           {errors.isPrivate && (
-            <span role="alert" className="error">
-              {errors.isPrivate.message}
-            </span>
+            <span role="alert">{errors.isPrivate.message}</span>
           )}
         </div>
 
-        <div className="submit">
-          <button type="submit" className="submitButton">
-            Add
-          </button>
+        <div>
+          <button type="submit">Add</button>
         </div>
       </form>
 
-      {errorMessage && (
-        <p role="alert" className="errorMessage">
-          {errorMessage}
-        </p>
-      )}
+      {errorMessage && <p role="alert">{errorMessage}</p>}
     </Layout>
   );
 }

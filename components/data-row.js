@@ -1,14 +1,6 @@
 import Router from "next/router";
 
-const DataRow = ({
-  title,
-  user,
-  username,
-  slug,
-  url,
-  description,
-  loading,
-}) => {
+function DataRow({ title, user, username, slug, url, description }) {
   const onClick = async () => {
     try {
       const res = await fetch(`/api/${username}/${slug}/delete`, {
@@ -25,24 +17,22 @@ const DataRow = ({
   };
 
   return (
-    <div className="dataRow">
-      <p className={loading ? "loading" : ""}>
+    <div>
+      <p>
         <a href={url} target="_blank">
           {title}
         </a>
       </p>
-      <p className={loading ? "loading" : ""}>{description}</p>
+      <p>{description}</p>
       {user && user.nickname === username ? (
-        <div className={loading ? "loading" : "buttons"}>
-          <button onClick={onClick} className="deleteButton">
-            Delete
-          </button>
+        <div>
+          <button onClick={onClick}>Delete</button>
         </div>
       ) : (
         <></>
       )}
     </div>
   );
-};
+}
 
 export default DataRow;
